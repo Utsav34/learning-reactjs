@@ -16,7 +16,7 @@ const UseEffect = () => {
   useEffect(() => {
     alert("useEffect Example");
     // it is a empty arrary run only first time page render in browser. after that never render.
-  }, [count]);
+  }, []);
   return (
     <>
        <h1>UseEffect Example</h1>

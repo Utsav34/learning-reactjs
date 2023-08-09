@@ -84,3 +84,16 @@
 .color-picker{
   display: block;
 }
+
+.d-flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+.content{
+  width: 50%;
+}
+.container{
+  max-width: 1140px;
+  margin: 0 auto;
+  
+}
