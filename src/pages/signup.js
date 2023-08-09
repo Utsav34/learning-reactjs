@@ -14,19 +14,29 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [users, setUsers] = useState([]);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent form submission behavior
-
-    // Taken one object and added all items we need to add data click on submit button.
-    const userData = {
+    e.preventDefault();
+    const newUser = {
       name: name,
       email: email,
       password: password,
       phone: phone,
     };
 
-    localStorage.setItem("userRegistration", JSON.stringify(userData));
+    // Add the new user to the array of users
+    const updatedUsers = [...users, newUser];
+    setUsers(updatedUsers);
+
+    // Save the updated user array to localStorage
+    localStorage.setItem("userRegistration", JSON.stringify(updatedUsers));
+
+    // Clear the input fields after submission
+    setName("");
+    setEmail("");
+    setPassword("");
+    setPhone("");
   };
 
   return (
@@ -41,7 +51,7 @@ const Signup = () => {
           }}
         >
           <Typography component="h1" variant="h5">
-            Sign IN
+            Sign Up
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
@@ -66,7 +76,6 @@ const Signup = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
-              autoFocus
             />
             <TextField
               margin="normal"
@@ -88,14 +97,14 @@ const Signup = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               label="Phone"
-              type="phone"
+              type="tel"
               id="phone"
-              autoComplete="phone-number"
+              autoComplete="tel"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
@@ -103,7 +112,7 @@ const Signup = () => {
               sx={{ mt: 3, mb: 2 }}
               onClick={handleSubmit}
             >
-              Sign In
+              Sign Up
             </Button>
           </Box>
         </Box>
@@ -113,3 +122,4 @@ const Signup = () => {
 };
 
 export default Signup;
+
