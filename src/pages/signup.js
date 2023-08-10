@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -15,6 +15,13 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const storedUsers = JSON.parse(localStorage.getItem("userRegistration"));
+    if (storedUsers) {
+      setUsers(storedUsers);
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -117,9 +124,11 @@ const Signup = () => {
           </Box>
         </Box>
       </Container>
+      {/* <div>
+        <img  src="/images/sign.svg"/>
+      </div> */}
     </>
   );
 };
 
 export default Signup;
-
